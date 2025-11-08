@@ -1,18 +1,18 @@
 obj-m := android-paradise.o
 
 android-paradise-y := \
-    core/paradise.o \
-    net/paradise_sock.o \
-    net/paradise_protocol.o \
-    utils/paradise_utils.o \
-    ioctl/paradise_ioctl.o \
-    mm/paradise_page_walk.o \
-    mm/paradise_proc_dmabuf.o \
-    hook/paradise_safe_signal.o \
-    proc/paradise_proc.o \
-    inlinehook/hijack_arm64.o \
-    utils/karray_list.o \
-    mm/paradise_bindproc.o
+    paradise.o \
+    paradise_sock.o \
+    paradise_protocol.o \
+    paradise_utils.o \
+    paradise_ioctl.o \
+    paradise_page_walk.o \
+    paradise_proc_dmabuf.o \
+    paradise_safe_signal.o \
+    paradise_proc.o \
+    hijack_arm64.o \
+    karray_list.o \
+    paradise_bindproc.o
 
 src := $(if $(filter /%,$(src)),$(src),$(srctree)/$(src))
 
@@ -24,8 +24,7 @@ $(info -- MDIR: $(MDIR))
 $(info -- PARADISE_SRC_DIR: $(src))
 $(info -- PARADISE_OBJ_DIR: $(obj))
 
-ccflags-y += -I$(src)/core -I$(src)/net -I$(src)/ioctl -I$(src)/mm
-ccflags-y += -I$(src)/inlinehook -I$(src)/hook -I$(src)/proc -I$(src)/utils
+ccflags-y += -I$(src)
 
 ccflags-y += -Wno-implicit-function-declaration -Wno-strict-prototypes -Wno-int-conversion -Wno-gcc-compat
 ccflags-y += -Wno-declaration-after-statement -Wno-unused-function -Wno-unused-variable
@@ -51,3 +50,4 @@ compdb:
 
 
 .PHONY: all clean
+
