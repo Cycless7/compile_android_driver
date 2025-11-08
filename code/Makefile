@@ -1,18 +1,18 @@
 obj-m := android-paradise.o
 
 android-paradise-y := \
-    src/core/paradise.o \
-    src/net/paradise_sock.o \
-    src/net/paradise_protocol.o \
-    src/utils/paradise_utils.o \
-    src/ioctl/paradise_ioctl.o \
-    src/mm/paradise_page_walk.o \
-    src/mm/paradise_proc_dmabuf.o \
-    src/hook/paradise_safe_signal.o \
-    src/proc/paradise_proc.o \
-    src/inlinehook/hijack_arm64.o \
-    src/utils/karray_list.o \
-    src/mm/paradise_bindproc.o
+    core/paradise.o \
+    net/paradise_sock.o \
+    net/paradise_protocol.o \
+    utils/paradise_utils.o \
+    ioctl/paradise_ioctl.o \
+    mm/paradise_page_walk.o \
+    mm/paradise_proc_dmabuf.o \
+    hook/paradise_safe_signal.o \
+    proc/paradise_proc.o \
+    inlinehook/hijack_arm64.o \
+    utils/karray_list.o \
+    mm/paradise_bindproc.o
 
 src := $(if $(filter /%,$(src)),$(src),$(srctree)/$(src))
 
@@ -24,8 +24,8 @@ $(info -- MDIR: $(MDIR))
 $(info -- PARADISE_SRC_DIR: $(src))
 $(info -- PARADISE_OBJ_DIR: $(obj))
 
-ccflags-y += -I$(src)/src/core -I$(src)/src/net -I$(src)/src/ioctl -I$(src)/src/mm
-ccflags-y += -I$(src)/src/inlinehook -I$(src)/src/hook -I$(src)/src/proc -I$(src)/src/utils
+ccflags-y += -I$(src)/core -I$(src)/net -I$(src)/ioctl -I$(src)/mm
+ccflags-y += -I$(src)/inlinehook -I$(src)/hook -I$(src)/proc -I$(src)/utils
 
 ccflags-y += -Wno-implicit-function-declaration -Wno-strict-prototypes -Wno-int-conversion -Wno-gcc-compat
 ccflags-y += -Wno-declaration-after-statement -Wno-unused-function -Wno-unused-variable
@@ -48,5 +48,6 @@ clean:
     
 compdb:
 	python3 $(MDIR)/.vscode/generate_compdb.py -O $(KDIR) $(MDIR)
+
 
 .PHONY: all clean
