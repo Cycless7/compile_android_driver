@@ -1,4 +1,4 @@
-MODULE = paradise.ko
+MODULE = paradise
 
 obj-m :=$(MODULE).o
 $(MODULE)-objs += core.o
