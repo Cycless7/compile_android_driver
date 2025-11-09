@@ -20,7 +20,7 @@ EXTRA_CFLAGS += -DBIG_PAGE
 EXTRA_CFLAGS += -O2                # 优化等级2
 EXTRA_CFLAGS += -fvisibility=hidden  # 隐藏符号
 EXTRA_CFLAGS += -fomit-frame-pointer # 省略帧指针
-# EXTRA_CFLAGS += -g0 去除调试信息
+EXTRA_CFLAGS += -g0 # 去除调试信息
 EXTRA_CFLAGS += -fno-pic -fvisibility=hidden
 EXTRA_CFLAGS += -fno-stack-protector
 
